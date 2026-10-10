@@ -5,10 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WOOLEN Furniture Store</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      body {
+        background: #F4F4F6;
+      }
+
+      .bento-card,
+      .product-card,
+      .site-header {
+        border: 0;
+        border-radius: 24px;
+      }
+
+      .surface-white {
+        background: #FFFFFF;
+      }
+
+      .surface-soft {
+        background: #F7F7F8;
+      }
+
+      .surface-peach {
+        background: #EAA28E;
+      }
+
+      .surface-beige {
+        background: #E2DFD8;
+      }
+
+      .pill-dark {
+        background: #111111;
+        color: #FFFFFF;
+        border: 0;
+      }
+
+      .pill-dark:hover,
+      .pill-dark:focus {
+        background: #000000;
+        color: #FFFFFF;
+      }
+
+      .pill-soft {
+        background: #E9E9EC;
+        color: #222222;
+        border: 0;
+      }
+
+      .pill-soft:hover,
+      .pill-soft:focus {
+        background: #DEDEE2;
+        color: #111111;
+      }
+    </style>
   </head>
-  <body class="bg-body-tertiary">
+  <body>
     <header class="py-4">
-      <nav class="container bg-white rounded-4 shadow-sm p-3">
+      <nav class="container site-header surface-white shadow-sm p-3">
         <div class="row g-3 align-items-center">
           <div class="col-12 col-lg-2">
             <a class="navbar-brand fw-bold fs-4 text-dark text-decoration-none" href="#">WOOLEN</a>
@@ -17,20 +69,20 @@
           <div class="col-12 col-lg-5">
             <form role="search">
               <div class="input-group">
-                <input class="form-control rounded-start-pill border-0 bg-light" type="search" placeholder="Search furniture" aria-label="Search furniture">
-                <button class="btn btn-dark rounded-end-pill px-4" type="submit">Search</button>
+                <input class="form-control rounded-start-pill border-0 surface-soft" type="search" placeholder="Search furniture" aria-label="Search furniture">
+                <button class="btn pill-dark rounded-end-pill px-4" type="submit">Search</button>
               </div>
             </form>
           </div>
 
           <div class="col-12 col-lg-5">
             <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
-              <button class="btn btn-light rounded-pill px-3" type="button">Sofa</button>
-              <button class="btn btn-light rounded-pill px-3" type="button">Table</button>
-              <button class="btn btn-light rounded-pill px-3" type="button">Dressers</button>
-              <button class="btn btn-light rounded-pill px-3" type="button">Chair</button>
-              <button class="btn btn-light rounded-pill px-3" type="button">Bed</button>
-              <button class="btn btn-light rounded-pill px-3" type="button">Lamps</button>
+              <button class="btn pill-soft rounded-pill px-3" type="button">Sofa</button>
+              <button class="btn pill-soft rounded-pill px-3" type="button">Table</button>
+              <button class="btn pill-soft rounded-pill px-3" type="button">Dressers</button>
+              <button class="btn pill-soft rounded-pill px-3" type="button">Chair</button>
+              <button class="btn pill-soft rounded-pill px-3" type="button">Bed</button>
+              <button class="btn pill-soft rounded-pill px-3" type="button">Lamps</button>
             </div>
           </div>
         </div>
@@ -40,8 +92,8 @@
     <main class="container pb-5">
       <section class="row g-3 align-items-stretch">
         <div class="col-12 col-lg-4">
-          <article class="card h-100 border-0 bg-light rounded-4 shadow-sm overflow-hidden">
-            <div class="card-body p-4 d-flex flex-column gap-3">
+          <article class="card h-100 bento-card surface-white shadow-sm overflow-hidden">
+            <div class="card-body p-4 d-flex flex-column justify-content-between gap-3">
               <div class="d-flex justify-content-between align-items-start gap-3">
                 <div>
                   <p class="text-uppercase text-secondary small fw-semibold mb-2">New Deals</p>
@@ -51,7 +103,7 @@
                 <span class="badge rounded-pill text-bg-warning">Rating 4.8</span>
               </div>
 
-              <div class="bg-white rounded-4 p-4 text-center">
+              <div class="surface-soft rounded-4 p-4 text-center">
                 <img class="img-fluid rounded-4" src="https://placehold.co/520x420/e9ecef/212529?text=Featured+Sofa" alt="Featured sofa image placeholder">
               </div>
 
@@ -60,7 +112,7 @@
                   <p class="text-secondary mb-1">Starting from</p>
                   <p class="display-6 fw-bold mb-0">$508</p>
                 </div>
-                <button class="btn btn-dark rounded-pill px-4" type="button">Shop Now</button>
+                <button class="btn pill-dark rounded-pill px-4" type="button">Shop Now</button>
               </div>
             </div>
           </article>
@@ -69,8 +121,8 @@
         <div class="col-12 col-lg-8">
           <div class="row g-3 h-100">
             <div class="col-12 col-md-8">
-              <article class="card h-100 border-0 bg-white rounded-4 shadow-sm overflow-hidden">
-                <div class="card-body p-4">
+              <article class="card h-100 bento-card surface-white shadow-sm overflow-hidden">
+                <div class="card-body p-4 d-flex flex-column justify-content-between">
                   <div class="row g-3 align-items-center">
                     <div class="col-12 col-sm-6">
                       <p class="text-uppercase text-secondary small fw-semibold mb-2">Great Value Deals</p>
@@ -86,32 +138,32 @@
             </div>
 
             <div class="col-12 col-md-4">
-              <article class="card h-100 border-0 bg-light rounded-4 shadow-sm overflow-hidden">
-                <div class="card-body p-4 d-flex flex-column gap-3">
+              <article class="card h-100 bento-card surface-white shadow-sm overflow-hidden">
+                <div class="card-body p-4 d-flex flex-column justify-content-between gap-3">
                   <p class="text-uppercase text-secondary small fw-semibold mb-0">Custom Studio</p>
                   <h2 class="h4 fw-bold mb-0">Customize your products</h2>
                   <p class="text-secondary mb-0">Choose fabrics, finishes, and sizes for your space.</p>
-                  <img class="img-fluid rounded-4 bg-white p-2" src="https://placehold.co/360x220/e9ecef/212529?text=Custom+Table" alt="Custom furniture image placeholder">
-                  <button class="btn btn-dark rounded-pill mt-auto" type="button">Get Started</button>
+                  <img class="img-fluid rounded-4 surface-soft p-2" src="https://placehold.co/360x220/e9ecef/212529?text=Custom+Table" alt="Custom furniture image placeholder">
+                  <button class="btn pill-dark rounded-pill mt-auto" type="button">Get Started</button>
                 </div>
               </article>
             </div>
 
             <div class="col-12">
-              <article class="card border-0 bg-white rounded-4 shadow-sm">
-                <div class="card-body p-4">
+              <article class="card bento-card surface-white shadow-sm">
+                <div class="card-body p-4 d-flex flex-column justify-content-between">
                   <div class="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center gap-2 mb-3">
                     <div>
                       <p class="text-uppercase text-secondary small fw-semibold mb-2">Popular Items</p>
                       <h2 class="h3 fw-bold mb-0">Popular Items</h2>
                     </div>
-                    <a class="btn btn-light rounded-pill px-4" href="#">View all</a>
+                    <a class="btn pill-soft rounded-pill px-4" href="#">View all</a>
                   </div>
 
                   <div class="row g-3">
                     <div class="col-12 col-md-4">
-                      <div class="card h-100 border-0 bg-light rounded-4">
-                        <div class="card-body p-3">
+                      <div class="card h-100 product-card surface-peach">
+                        <div class="card-body p-3 d-flex flex-column justify-content-between">
                           <div class="d-flex justify-content-between align-items-center mb-3">
                             <h3 class="h6 fw-bold mb-0">White Chair</h3>
                             <span class="badge rounded-pill text-bg-warning">4.8</span>
@@ -119,15 +171,15 @@
                           <img class="img-fluid rounded-4 mb-3" src="https://placehold.co/360x260/ffffff/212529?text=White+Chair" alt="White Chair image placeholder">
                           <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-semibold">$146</span>
-                            <button class="btn btn-sm btn-dark rounded-pill px-3" type="button">Buy</button>
+                            <button class="btn btn-sm pill-dark rounded-pill px-3" type="button">Buy</button>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div class="col-12 col-md-4">
-                      <div class="card h-100 border-0 bg-dark text-white rounded-4">
-                        <div class="card-body p-3">
+                      <div class="card h-100 product-card surface-beige">
+                        <div class="card-body p-3 d-flex flex-column justify-content-between">
                           <div class="d-flex justify-content-between align-items-center mb-3">
                             <h3 class="h6 fw-bold mb-0">Ottoman</h3>
                             <span class="badge rounded-pill text-bg-warning">4.6</span>
@@ -135,15 +187,15 @@
                           <img class="img-fluid rounded-4 mb-3" src="https://placehold.co/360x260/ced4da/212529?text=Ottoman" alt="Ottoman image placeholder">
                           <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-semibold">$190</span>
-                            <button class="btn btn-sm btn-light rounded-pill px-3" type="button">Buy</button>
+                            <button class="btn btn-sm pill-dark rounded-pill px-3" type="button">Buy</button>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div class="col-12 col-md-4">
-                      <div class="card h-100 border-0 bg-light rounded-4">
-                        <div class="card-body p-3">
+                      <div class="card h-100 product-card surface-beige">
+                        <div class="card-body p-3 d-flex flex-column justify-content-between">
                           <div class="d-flex justify-content-between align-items-center mb-3">
                             <h3 class="h6 fw-bold mb-0">Thick Chair</h3>
                             <span class="badge rounded-pill text-bg-warning">4.4</span>
@@ -151,7 +203,7 @@
                           <img class="img-fluid rounded-4 mb-3" src="https://placehold.co/360x260/dee2e6/212529?text=Thick+Chair" alt="Thick Chair image placeholder">
                           <div class="d-flex justify-content-between align-items-center">
                             <span class="fw-semibold">$330</span>
-                            <button class="btn btn-sm btn-dark rounded-pill px-3" type="button">Buy</button>
+                            <button class="btn btn-sm pill-dark rounded-pill px-3" type="button">Buy</button>
                           </div>
                         </div>
                       </div>
