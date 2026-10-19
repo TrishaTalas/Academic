@@ -1,0 +1,720 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+  <head>
+    <title>Lokal.fm - Record & Vinyl Market</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Bootstrap 5 CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      body {
+        background-color: #f1f1f1;
+        color: #0a0a0a;
+        font-family: "Inter Tight", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        overflow-x: hidden;
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 24px 80px;
+        position: relative;
+      }
+
+      /* ---------- HERO ---------- */
+      .hero {
+        position: relative;
+        min-height: 560px;
+        padding-top: 70px;
+      }
+
+      .hero-title {
+        font-size: clamp(3.5rem, 9vw, 7rem);
+        font-weight: 600;
+        line-height: 0.92;
+        letter-spacing: -0.055em;
+        margin: 0 0 40px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero-text {
+        font-size: 0.8rem;
+        line-height: 1.5;
+        max-width: 260px;
+        margin-bottom: 28px;
+        position: relative;
+        z-index: 2;
+      }
+
+      /* Pill button with circular arrow */
+      .btn-catalog {
+        display: inline-flex;
+        align-items: center;
+        gap: 28px;
+        padding: 4px 4px 4px 24px;
+        border: 1px solid #0a0a0a;
+        border-radius: 999px;
+        color: #0a0a0a;
+        font-size: 0.8rem;
+        text-decoration: none;
+        position: relative;
+        z-index: 2;
+      }
+      .btn-catalog .arrow {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: #0a0a0a;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+      }
+      .btn-catalog:focus-visible,
+      .see-all:focus-visible {
+        outline: 3px solid #0a0a0a;
+        outline-offset: 3px;
+      }
+
+      /* Big cropped vinyl (pure CSS) */
+      .big-vinyl {
+        position: absolute;
+        top: -60px;
+        right: -230px;
+        width: 620px;
+        height: 620px;
+        border-radius: 50%;
+        background:
+          conic-gradient(from 200deg, rgba(255,255,255,0) 0deg, rgba(255,255,255,0.35) 40deg, rgba(255,255,255,0) 90deg, rgba(255,255,255,0) 200deg, rgba(255,255,255,0.25) 240deg, rgba(255,255,255,0) 290deg),
+          repeating-radial-gradient(circle, #0b0b0b 0, #0b0b0b 6px, #1d1d1d 7px, #0b0b0b 9px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+      }
+      .big-vinyl .label {
+        width: 270px;
+        height: 270px;
+        border-radius: 50%;
+        background: #f1f1f1;
+        border: 6px solid #0a0a0a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .big-vinyl .hole {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: #0a0a0a;
+      }
+
+      /* ---------- SECTION HEADERS ---------- */
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin: 70px 0 30px;
+      }
+      .section-title {
+        font-size: clamp(2rem, 4vw, 2.8rem);
+        font-weight: 600;
+        letter-spacing: -0.05em;
+        line-height: 1;
+        margin: 0;
+        display: inline-block;
+      }
+      .see-all {
+        font-size: 0.55rem;
+        color: #0a0a0a;
+        text-decoration: underline;
+        vertical-align: top;
+        margin-left: 14px;
+      }
+      .corner-arrow {
+        font-size: 1.6rem;
+        line-height: 1;
+        color: #0a0a0a;
+        text-decoration: none;
+      }
+
+      /* ---------- PRODUCT CARDS ---------- */
+      .album-card {
+        background: rgba(255, 255, 255, 0.55);
+        -webkit-backdrop-filter: blur(14px);
+        backdrop-filter: blur(14px);
+        border: 1px solid rgba(255, 255, 255, 0.9);
+        outline: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 24px;
+        padding: 10px 10px 14px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s ease;
+      }
+      .album-card:hover { transform: translateY(-4px); }
+      .album-img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
+        display: block;
+        background: #d9d9d9;
+        border-radius: 16px;
+      }
+      .album-info {
+        padding: 12px 6px 0;
+        line-height: 1.25;
+      }
+      .album-title {
+        font-size: 0.8rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: -0.01em;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .album-artist {
+        font-size: 0.7rem;
+        color: #444;
+      }
+      .album-meta {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.62rem;
+        color: #777;
+        margin-top: 2px;
+      }
+
+      /* Soft color glow sa likod para kita ang glass effect */
+      #parent {
+        position: relative;
+      }
+      #parent::before {
+        content: "";
+        position: absolute;
+        inset: -30px;
+        z-index: -1;
+        background:
+          radial-gradient(circle at 15% 20%, rgba(120, 170, 255, 0.35), transparent 45%),
+          radial-gradient(circle at 85% 35%, rgba(255, 140, 190, 0.3), transparent 45%),
+          radial-gradient(circle at 50% 90%, rgba(150, 230, 190, 0.3), transparent 45%);
+        filter: blur(30px);
+      }
+
+      /* ---------- MARQUEE ---------- */
+      .marquee-wrap {
+        margin-top: 90px;
+        text-align: center;
+      }
+      .marquee-label {
+        font-size: 0.55rem;
+        margin-bottom: 18px;
+      }
+      .marquee {
+        overflow: hidden;
+        -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+        mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+      }
+      .marquee-track {
+        display: flex;
+        align-items: center;
+        gap: 56px;
+        width: max-content;
+        animation: scroll-left 28s linear infinite;
+      }
+      .marquee:hover .marquee-track { animation-play-state: paused; }
+      .marquee-item {
+        font-size: 1.15rem;
+        white-space: nowrap;
+        letter-spacing: -0.02em;
+      }
+      .marquee-item.f1 { font-weight: 800; text-transform: uppercase; letter-spacing: 0; }
+      .marquee-item.f2 { font-weight: 500; font-style: italic; }
+      .marquee-item.f3 { font-weight: 700; letter-spacing: -0.06em; }
+      .marquee-item.f4 { font-weight: 400; text-transform: lowercase; }
+      @keyframes scroll-left {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+
+      /* ---------- FEEDBACK CAROUSEL ---------- */
+      .feedback-title {
+        text-align: center;
+        font-size: 1.15rem;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        margin: 44px 0 10px;
+      }
+      .feedback-title em { font-style: italic; font-weight: 700; }
+      .feedback-stage {
+        position: relative;
+      }
+      .feedback-track {
+        display: flex;
+        align-items: center;
+        gap: 22px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        padding: 50px 40px;
+      }
+      .feedback-track::-webkit-scrollbar { display: none; }
+      .feedback-card {
+        flex: 0 0 300px;
+        scroll-snap-align: center;
+        position: relative;
+        padding: 22px 22px 20px;
+        border: 2px solid #0a0a0a;
+        border-radius: 18px;
+        background: #ffffff;
+        color: #0a0a0a;
+        text-align: left;
+        box-shadow: 7px 7px 0 var(--accent);
+      }
+      .feedback-stars {
+        font-size: 1.15rem;
+        letter-spacing: 3px;
+        line-height: 1;
+        margin-bottom: 12px;
+      }
+      .feedback-quote {
+        font-size: 0.8rem;
+        font-weight: 500;
+        line-height: 1.45;
+        letter-spacing: -0.01em;
+        margin: 0 0 18px;
+      }
+      .feedback-author {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding-right: 40px;
+      }
+      .feedback-avatar {
+        flex: 0 0 auto;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        border: 2px solid #0a0a0a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 0.95rem;
+        color: #fff;
+      }
+      .feedback-name {
+        font-size: 0.82rem;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      .feedback-role {
+        font-size: 0.65rem;
+        line-height: 1.3;
+        color: #444;
+      }
+      .feedback-sparkle {
+        position: absolute;
+        right: 14px;
+        bottom: 14px;
+        width: 34px;
+        height: 34px;
+      }
+      .feedback-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+        width: 34px;
+        height: 34px;
+        border-radius: 50%;
+        border: 1px solid #0a0a0a;
+        background: #f1f1f1;
+        color: #0a0a0a;
+        font-size: 1rem;
+        line-height: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+      }
+      .feedback-arrow:hover { background: #0a0a0a; color: #fff; }
+      .feedback-arrow:focus-visible { outline: 3px solid #0a0a0a; outline-offset: 3px; }
+      .feedback-arrow.prev { left: 0; }
+      .feedback-arrow.next { right: 0; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .marquee-track { animation: none; }
+        .feedback-track { scroll-behavior: auto; }
+      }
+
+      /* ---------- NAVBAR ---------- */
+      html { scroll-behavior: smooth; }
+      #home, #catalog, #artists, #reviews { scroll-margin-top: 90px; }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 18px 0 0;
+      }
+      .brand {
+        font-size: 1.35rem;
+        font-weight: 700;
+        letter-spacing: -0.06em;
+        color: #0a0a0a;
+        text-decoration: none;
+      }
+      .nav-pill {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 5px;
+        border: 1.5px solid #0a0a0a;
+        border-radius: 999px;
+        background: #f1f1f1;
+      }
+      .nav-pill a {
+        padding: 9px 20px;
+        border-radius: 999px;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        color: #0a0a0a;
+        text-decoration: none;
+        white-space: nowrap;
+        transition: background 0.2s ease, color 0.2s ease;
+      }
+      .nav-pill a:hover { background: rgba(0, 0, 0, 0.08); }
+      .nav-pill a.active { background: #0a0a0a; color: #fff; }
+      .nav-pill a:focus-visible, .brand:focus-visible { outline: 3px solid #0a0a0a; outline-offset: 2px; }
+      .nav-spacer { width: 90px; }
+
+      /* ---------- FOOTER ---------- */
+      .site-footer {
+        background: #ffffff;
+        padding: 16px 16px 0;
+      }
+      .footer-panel {
+        position: relative;
+        max-width: 1280px;
+        margin: 0 auto;
+        background: #f1f1f1;
+        border-radius: 40px;
+        overflow: hidden;
+        padding: 56px 56px 0;
+      }
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1.3fr 1.2fr;
+        gap: 32px;
+        font-size: 0.78rem;
+      }
+      .footer-heading { font-size: 0.7rem; color: #777; margin-bottom: 10px; }
+      .footer-about { font-weight: 600; font-size: 0.95rem; line-height: 1.25; letter-spacing: -0.02em; max-width: 260px; }
+      .footer-links { list-style: none; padding: 0; margin: 0; }
+      .footer-links li { margin-bottom: 6px; }
+      .footer-links a { color: #555; text-decoration: none; font-size: 0.7rem; }
+      .footer-links a:hover { color: #0a0a0a; }
+      .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+      .chip {
+        font-size: 0.62rem;
+        padding: 4px 10px;
+        border: 1px solid #cfcfcf;
+        border-radius: 999px;
+        background: #fff;
+        color: #0a0a0a;
+        text-decoration: none;
+      }
+      .footer-cta { display: flex; align-items: center; gap: 8px; font-size: 1rem; font-weight: 500; letter-spacing: -0.02em; color: #0a0a0a; text-decoration: none; }
+      .footer-cta .dot {
+        width: 20px; height: 20px; border-radius: 50%;
+        display: inline-flex; align-items: center; justify-content: center;
+        font-size: 0.65rem; color: #fff; background: #0a0a0a;
+      }
+      .footer-cta.hot { color: #e8452c; }
+      .footer-cta.hot .dot { background: #e8452c; }
+      .footer-sub { font-size: 0.6rem; color: #888; margin: 2px 0 18px; }
+      .footer-word {
+        font-size: clamp(6rem, 24vw, 19rem);
+        font-weight: 700;
+        letter-spacing: -0.07em;
+        line-height: 0.8;
+        margin: 40px 0 0 -0.04em;
+        white-space: nowrap;
+        color: #0a0a0a;
+        height: 0.55em;
+        overflow: hidden;
+        user-select: none;
+      }
+      .footer-bar {
+        max-width: 1280px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        padding: 18px 56px;
+        font-size: 0.6rem;
+        color: #777;
+      }
+      .footer-bar a { color: #777; text-decoration: none; margin-left: 18px; }
+
+      @media (max-width: 767px) {
+        .site-header { flex-wrap: wrap; justify-content: center; }
+        .nav-spacer { display: none; }
+        .nav-pill { max-width: 100%; overflow-x: auto; }
+        .nav-pill a { padding: 8px 14px; font-size: 0.7rem; }
+        .footer-panel { padding: 36px 24px 0; border-radius: 28px; }
+        .footer-grid { grid-template-columns: 1fr 1fr; }
+        .footer-bar { padding: 16px 24px; flex-direction: column; gap: 6px; }
+        .footer-bar a { margin: 0 14px 0 0; }
+      }
+
+      @media (max-width: 767px) {
+        .big-vinyl {
+          width: 420px;
+          height: 420px;
+          right: -190px;
+          top: -50px;
+        }
+        .big-vinyl .label { width: 180px; height: 180px; }
+        .hero { min-height: 440px; padding-top: 60px; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="page">
+
+      <!-- NAVBAR -->
+      <header class="site-header">
+        <a href="#home" class="brand">Lokal.fm</a>
+        <nav class="nav-pill" aria-label="Main">
+          <a href="#home" class="active">Home</a>
+          <a href="#catalog">Catalog</a>
+          <a href="#artists">Artists</a>
+          <a href="#reviews">Reviews</a>
+        </nav>
+        <span class="nav-spacer" aria-hidden="true"></span>
+      </header>
+
+      <!-- HERO -->
+      <section class="hero" id="home">
+        <div class="big-vinyl" aria-hidden="true">
+          <div class="label"><div class="hole"></div></div>
+        </div>
+
+        <h1 class="hero-title">Record<br />&amp; vinyl<br />market</h1>
+        <p class="hero-text">
+          Expand your OPM vinyl record collection<br />and find the perfect sound with us.
+        </p>
+        <a href="#catalog" class="btn-catalog">
+          select in the catalog
+          <span class="arrow">&searr;</span>
+        </a>
+      </section>
+
+      <!-- NEW PRODUCTS -->
+      <div class="section-head" id="catalog">
+        <h2 class="section-title">new products<a href="#" class="see-all">(watch all)</a></h2>
+        <a href="#" class="corner-arrow" aria-label="See all new products">&swarr;</a>
+      </div>
+
+      <div class="row g-3" id="parent">
+        <!-- JavaScript loop ang maglalagay ng vinyl cards dito -->
+      </div>
+
+      <!-- MARQUEE -->
+      <section class="marquee-wrap" id="artists" aria-label="OPM artists on our shelves">
+        <div class="marquee-label">our shelves carry the best of opm</div>
+        <div class="marquee">
+          <div class="marquee-track" id="marquee"></div>
+        </div>
+      </section>
+
+      <!-- FEEDBACK -->
+      <h2 class="feedback-title" id="reviews">Why collectors <em>love</em> Lokal.fm</h2>
+      <div class="feedback-stage">
+        <button class="feedback-arrow prev" id="fbPrev" aria-label="Previous feedback">&larr;</button>
+        <div class="feedback-track" id="feedback"></div>
+        <button class="feedback-arrow next" id="fbNext" aria-label="Next feedback">&rarr;</button>
+      </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="footer-panel">
+        <div class="footer-grid">
+          <p class="footer-about">Lokal.fm is a local record shop for OPM vinyl collectors.</p>
+          <div>
+            <div class="footer-heading">Explore</div>
+            <ul class="footer-links">
+              <li><a href="#catalog">Catalog</a></li>
+              <li><a href="#artists">Artists</a></li>
+              <li><a href="#reviews">Reviews</a></li>
+            </ul>
+          </div>
+          <div>
+            <div class="footer-heading">Follow us</div>
+            <div class="chips">
+              <a href="#" class="chip">Facebook @lokalfm</a>
+              <a href="#" class="chip">Instagram @lokalfm</a>
+              <a href="#" class="chip">TikTok @lokalfm</a>
+              <a href="#" class="chip">YouTube @lokalfm</a>
+            </div>
+          </div>
+          <div>
+            <a href="#" class="footer-cta hot">Message us <span class="dot">&nearr;</span></a>
+            <div class="footer-sub">Orders and questions</div>
+            <a href="#catalog" class="footer-cta">Browse catalog <span class="dot">&nearr;</span></a>
+            <div class="footer-sub">New OPM pressings</div>
+          </div>
+        </div>
+        <div class="footer-word" aria-hidden="true">lokal.fm</div>
+      </div>
+      <div class="footer-bar">
+        <span>Lokal.fm &copy; 2026</span>
+        <span><a href="#">Privacy policy</a><a href="#">Terms</a></span>
+        <span>Manila <span id="clock"></span> PHT</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+      // 1. JSON Data: OPM vinyl products
+      var vinylProducts = [
+        { title: "cutterpillow", artist: "eraserheads", type: "Album", price: "1 850 p", cover: "https://images.unsplash.com/photo-1539375665275-f9de415ef9ac?w=500" },
+        { title: "fragmented", artist: "up dharma down", type: "Album", price: "2 100 p", cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" },
+        { title: "pebble house", artist: "ben&ben", type: "Album", price: "1 950 p", cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500" },
+        { title: "transit", artist: "sponge cola", type: "Album", price: "1 750 p", cover: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=500" },
+        { title: "gulong itlog", artist: "parokya ni edgar", type: "Album", price: "1 800 p", cover: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=500" },
+        { title: "trip", artist: "rivermaya", type: "Album", price: "1 900 p", cover: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500" },
+        { title: "fuchsiang", artist: "silent sanctuary", type: "Album", price: "1 650 p", cover: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=500" },
+        { title: "malaya", artist: "moira dela torre", type: "Album", price: "1 850 p", cover: "https://images.unsplash.com/photo-1539375665275-f9de415ef9ac?w=500" }
+      ];
+
+      // 2. Parent containers
+      var elParent = document.getElementById("parent");
+
+      // 3. For loop + concatenation: vinyl cards
+      for (var i = 0; i < vinylProducts.length; i++) {
+        elParent.innerHTML += `
+          <div class="col-6 col-md-3">
+            <div class="album-card">
+              <img src="${vinylProducts[i].cover}" class="album-img" alt="${vinylProducts[i].title}">
+              <div class="album-info">
+                <div class="album-title">${vinylProducts[i].title}</div>
+                <div class="album-artist">${vinylProducts[i].artist}</div>
+                <div class="album-meta">
+                  <span>${vinylProducts[i].type}</span>
+                  <span>${vinylProducts[i].price}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      // 5. Marquee: JSON data + for loop (dinoble para tuloy-tuloy ang scroll)
+      var marqueeItems = [
+        { text: "Eraserheads", style: "f1" },
+        { text: "Up Dharma Down", style: "f2" },
+        { text: "Ben&Ben", style: "f3" },
+        { text: "Sponge Cola", style: "f4" },
+        { text: "Parokya ni Edgar", style: "f1" },
+        { text: "Rivermaya", style: "f2" },
+        { text: "Silent Sanctuary", style: "f3" },
+        { text: "Moira Dela Torre", style: "f4" }
+      ];
+      var elMarquee = document.getElementById("marquee");
+      var marqueeHTML = "";
+      for (var m = 0; m < marqueeItems.length; m++) {
+        marqueeHTML += `<span class="marquee-item ${marqueeItems[m].style}">${marqueeItems[m].text}</span>`;
+      }
+      elMarquee.innerHTML = marqueeHTML + marqueeHTML;
+
+      // 6. Feedback: JSON data + for loop
+      // rotate at offset ang nagpapa-unequal ng itsura ng bawat card
+      var feedbacks = [
+        { name: "Marco D.", role: "Vinyl collector, Quezon City", color: "#d96a8a", rotate: -3, offset: 18, quote: "Nahanap ko dito yung first press ng Cutterpillow na ilang taon ko nang hinahanap. Maayos ang packaging, walang gasgas." },
+        { name: "Ana L.", role: "Music teacher, Cebu", color: "#4a8fd9", rotate: 2, offset: -14, quote: "Sulit ang presyo. Mabilis ang reply ng seller at tama ang description ng condition ng record." },
+        { name: "Jopet R.", role: "Radio DJ, Davao", color: "#e0a63c", rotate: -1.5, offset: 26, quote: "Finally, may lokal na shop na puro OPM vinyl. Sana dumami pa ang pressings." },
+        { name: "Bea S.", role: "Graphic designer, Manila", color: "#4fb58a", rotate: 3, offset: -6, quote: "Regalo ko ito sa tatay ko at naiyak siya pagbukas. Dumating nang maaga at maganda ang sleeve." },
+        { name: "Karlo M.", role: "Student, Laguna", color: "#8d6ad9", rotate: -2.5, offset: 12, quote: "Ang ganda ng tunog sa vinyl. Dito na ako bibili ng susunod kong album." }
+      ];
+      var elFeedback = document.getElementById("feedback");
+      for (var f = 0; f < feedbacks.length; f++) {
+        elFeedback.innerHTML += `
+          <div class="feedback-card" style="--accent: ${feedbacks[f].color}; transform: translateY(${feedbacks[f].offset}px) rotate(${feedbacks[f].rotate}deg);">
+            <div class="feedback-stars" aria-label="5 out of 5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <p class="feedback-quote">${feedbacks[f].quote}</p>
+            <div class="feedback-author">
+              <div class="feedback-avatar" style="background: ${feedbacks[f].color};">${feedbacks[f].name.charAt(0)}</div>
+              <div>
+                <div class="feedback-name">${feedbacks[f].name}</div>
+                <div class="feedback-role">${feedbacks[f].role}</div>
+              </div>
+            </div>
+            <svg class="feedback-sparkle" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .8C13 8 16 11 23.2 12 16 13 13 16 12 23.2 11 16 8 13 .8 12 8 11 11 8 12 .8Z" fill="#fff" stroke="#0a0a0a" stroke-width="1"/>
+            </svg>
+          </div>
+        `;
+      }
+
+      // Arrow buttons: i-scroll ang track
+      document.getElementById("fbPrev").onclick = function () {
+        elFeedback.scrollBy({ left: -320, behavior: "smooth" });
+      };
+      document.getElementById("fbNext").onclick = function () {
+        elFeedback.scrollBy({ left: 320, behavior: "smooth" });
+      };
+
+      // 7. Navbar: active link habang nagsa-scroll
+      var navLinks = document.querySelectorAll(".nav-pill a");
+      var sectionIds = ["home", "catalog", "artists", "reviews"];
+      function updateNav() {
+        var current = "home";
+        for (var n = 0; n < sectionIds.length; n++) {
+          var el = document.getElementById(sectionIds[n]);
+          if (el.getBoundingClientRect().top <= 140) current = sectionIds[n];
+        }
+        for (var k = 0; k < navLinks.length; k++) {
+          navLinks[k].classList.toggle("active", navLinks[k].getAttribute("href") === "#" + current);
+        }
+      }
+      window.addEventListener("scroll", updateNav);
+      updateNav();
+
+      // 8. Footer: oras sa Manila
+      function updateClock() {
+        document.getElementById("clock").textContent = new Intl.DateTimeFormat("en-PH", {
+          hour: "numeric", minute: "2-digit", timeZone: "Asia/Manila"
+        }).format(new Date());
+      }
+      updateClock();
+      setInterval(updateClock, 30000);
+    </script>
+  </body>
+</html>
