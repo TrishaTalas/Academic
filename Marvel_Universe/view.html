@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="description" content="View a Marvel character profile.">
+  <title>Character Profile — Marvel Universe</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"><link href="css/style.css" rel="stylesheet">
+</head>
+<body class="view-page">
+  <nav class="navbar profile-navbar"><div class="container"><a class="brand-lockup dark-brand" href="index.html"><span class="brand-box">MARVEL</span><span>UNIVERSE</span></a><a id="backToCharacters" class="profile-back-link" href="characters.html"><i class="bi bi-arrow-left"></i> Back to characters</a></div></nav>
+  <main>
+    <div id="profileLoading" class="profile-loading"><div class="spinner-border text-danger" role="status"></div><p>Opening character file…</p></div>
+    <div id="profileError" class="profile-error" hidden><span class="display-outline">404</span><h1>Character not found</h1><p>The requested character file is not available.</p><a class="btn btn-dark" href="characters.html">Return to characters</a></div>
+    <article id="profileContent" hidden>
+      <section class="profile-hero">
+        <div class="profile-background-word">MARVEL</div><div class="profile-red-shape"></div>
+        <div class="container position-relative"><div class="row align-items-center profile-height"><div class="col-lg-6 profile-intro"><p class="profile-kicker"><span id="characterNumber">#000</span> / Character file</p><h1 id="characterName"></h1><p class="profile-real-name" id="characterRealName"></p><p class="profile-description" id="characterDescription"></p><div class="profile-tags"><span id="alignmentBadge"></span><span id="publisherBadge"></span></div></div><div class="col-lg-6"><div class="profile-image-wrap"><img id="characterImage" src="" alt=""></div></div></div></div>
+      </section>
+      <section class="profile-details"><div class="container"><div class="row g-5">
+        <div class="col-lg-7">
+          <section class="detail-section"><div class="detail-heading"><span>01</span><h2>Biography</h2></div><dl class="info-grid" id="biographyDetails"></dl></section>
+          <section class="detail-section"><div class="detail-heading"><span>02</span><h2>Appearance</h2></div><dl class="info-grid" id="appearanceDetails"></dl></section>
+          <section class="detail-section"><div class="detail-heading"><span>03</span><h2>Connections</h2></div><dl class="info-grid wide" id="connectionDetails"></dl></section>
+        </div>
+        <div class="col-lg-5"><aside class="power-panel"><div class="detail-heading light"><span>04</span><h2>Power statistics</h2></div><div id="powerStatistics"></div></aside></div>
+      </div></div></section>
+      <nav class="character-navigation"><div class="container"><div class="row g-3"><div class="col-md-6"><a id="previousCharacter" class="character-nav-link" href="#"><i class="bi bi-arrow-left"></i><span><small>Previous character</small><strong id="previousCharacterName">—</strong></span></a></div><div class="col-md-6"><a id="nextCharacter" class="character-nav-link next" href="#"><span><small>Next character</small><strong id="nextCharacterName">—</strong></span><i class="bi bi-arrow-right"></i></a></div></div></div></nav>
+    </article>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script><script type="module" src="js/view.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Explore Marvel Comics heroes, villains, and legends.">
+  <title>Marvel Universe — Character Explorer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="home-page">
+  <nav class="navbar navbar-expand-lg navbar-dark site-navbar fixed-top">
+    <div class="container">
+      <a class="brand-lockup" href="index.html"><span class="brand-box">MARVEL</span><span>UNIVERSE</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNavigation">
+        <ul class="navbar-nav ms-auto gap-lg-3">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="characters.html">Characters</a></li>
+          <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <main>
+    <section class="home-hero">
+      <div class="stars"></div>
+      <div class="container position-relative hero-container">
+        <div class="row align-items-center min-vh-100 g-5">
+          <div class="col-lg-6 hero-copy">
+            <p class="eyebrow"><span></span> Character database</p>
+            <h1>Enter the<br><strong>Marvel Universe.</strong></h1>
+            <p class="hero-subtitle">Discover the heroes, villains, and legends of Marvel. Explore their stories, abilities, and the powers that shaped a universe.</p>
+            <a class="btn btn-marvel btn-lg" href="characters.html">Explore characters <i class="bi bi-arrow-right"></i></a>
+            <div class="hero-stats">
+              <div><strong id="heroCharacterCount">—</strong><span>Characters</span></div>
+              <div><strong>01</strong><span>Universe</span></div>
+              <div><strong>∞</strong><span>Stories</span></div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="hero-visual">
+              <div class="hero-disc"></div>
+              <div class="hero-image-frame">
+                <div class="hero-loading" id="heroLoading"><div class="spinner-border" role="status"><span class="visually-hidden">Loading</span></div></div>
+                <img id="heroCharacterImage" alt="">
+              </div>
+              <div class="hero-character-label"><span>Featured character</span><strong>Loading…</strong></div>
+              <span class="vertical-word">ASSEMBLE</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#featured">Discover <i class="bi bi-arrow-down"></i></a>
+    </section>
+    <section class="featured-section" id="featured">
+      <div class="container">
+        <div class="section-heading d-flex flex-column flex-md-row justify-content-between align-items-md-end">
+          <div><p class="eyebrow dark"><span></span> The archives</p><h2>Featured legends</h2></div>
+          <a class="text-link" href="characters.html">View all characters <i class="bi bi-arrow-up-right"></i></a>
+        </div>
+        <div class="row g-4" id="featuredCharacters"><div class="col-12 text-center py-5"><div class="spinner-border text-danger" role="status"></div></div></div>
+      </div>
+    </section>
+    <section class="about-section" id="about">
+      <div class="container"><div class="row align-items-center g-5">
+        <div class="col-lg-5"><span class="about-number">700+</span></div>
+        <div class="col-lg-7"><p class="eyebrow"><span></span> About this project</p><h2>Every hero has a story.<br>Every villain has a reason.</h2><p>Marvel Universe is a student-built character explorer powered by the public Superhero API. Search the archive, compare power statistics, and learn the stories behind Marvel Comics characters.</p></div>
+      </div></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3"><div class="brand-lockup"><span class="brand-box">MARVEL</span><span>UNIVERSE</span></div><p>Character data provided by the Superhero API.</p></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="module" src="js/home.js"></script>
+</body>
+</html>

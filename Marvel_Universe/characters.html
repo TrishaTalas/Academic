@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse and filter Marvel Comics characters.">
+  <title>Characters — Marvel Universe</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+<body class="characters-page">
+  <nav class="navbar navbar-expand-lg navbar-dark site-navbar">
+    <div class="container">
+      <a class="brand-lockup" href="index.html"><span class="brand-box">MARVEL</span><span>UNIVERSE</span></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavigation" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+      <div class="collapse navbar-collapse" id="mainNavigation"><ul class="navbar-nav ms-auto gap-lg-3"><li class="nav-item"><a class="nav-link" href="index.html">Home</a></li><li class="nav-item"><a class="nav-link active" href="characters.html">Characters</a></li><li class="nav-item"><a class="nav-link" href="index.html#about">About</a></li></ul></div>
+    </div>
+  </nav>
+  <main>
+    <header class="directory-header"><div class="directory-grid"></div><div class="container position-relative"><p class="eyebrow"><span></span> Marvel database</p><h1>Character <strong>directory</strong></h1><p>Search the archives. Find a hero. Study a villain.</p></div></header>
+    <section class="directory-content"><div class="container">
+      <div class="filter-panel"><div class="row g-3 align-items-center">
+        <div class="col-lg-5"><label class="visually-hidden" for="searchInput">Search characters</label><div class="search-field"><i class="bi bi-search"></i><input id="searchInput" type="search" placeholder="Search by character name…" autocomplete="off"><button id="clearSearchButton" type="button" aria-label="Clear search" hidden><i class="bi bi-x-lg"></i></button></div></div>
+        <div class="col-lg-7"><div class="filter-buttons" id="filterButtons" aria-label="Filter characters">
+          <button class="filter-button active" type="button" data-filter="all">All characters</button><button class="filter-button" type="button" data-filter="heroes">Heroes</button><button class="filter-button" type="button" data-filter="villains">Villains</button><button class="filter-button" type="button" data-filter="male">Male</button><button class="filter-button" type="button" data-filter="female">Female</button>
+        </div></div>
+      </div></div>
+      <div class="results-toolbar d-flex flex-column flex-sm-row justify-content-between gap-2"><p id="resultsSummary" aria-live="polite">Loading the Marvel archive…</p><p id="totalSummary"></p></div>
+      <div id="loadingState" class="loading-state"><div class="spinner-border text-danger" role="status"></div><p>Retrieving characters from the archive…</p></div>
+      <div id="errorState" class="message-state" hidden><i class="bi bi-exclamation-triangle"></i><h2>We couldn't reach the archive</h2><p>Please check your connection and try again.</p><button class="btn btn-marvel" id="retryButton" type="button">Try again</button></div>
+      <div id="emptyState" class="message-state" hidden><i class="bi bi-search"></i><h2>No characters found</h2><p>Try another name or choose a different filter.</p><button class="btn btn-outline-light" id="resetButton" type="button">Reset search</button></div>
+      <div class="row g-4" id="characterGrid"></div>
+      <nav class="pagination-wrap" id="paginationContainer" aria-label="Character pagination" hidden><button id="previousButton" class="page-action" type="button"><i class="bi bi-arrow-left"></i> Previous</button><div class="page-indicator"><span>Page</span><strong id="currentPageDisplay">1</strong><span>of <span id="totalPagesDisplay">1</span></span></div><button id="nextButton" class="page-action" type="button">Next <i class="bi bi-arrow-right"></i></button></nav>
+    </div></section>
+  </main>
+  <footer class="site-footer"><div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-3"><div class="brand-lockup"><span class="brand-box">MARVEL</span><span>UNIVERSE</span></div><p>Character data provided by the Superhero API.</p></div></footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script><script type="module" src="js/characters.js"></script>
+</body>
+</html>
